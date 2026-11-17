@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* Variante "pin" : desktop + mouvement autorisé (miroir exact des media queries GSAP). */
+@custom-variant pin {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    @slot;
+  }
+}
+
+@theme {
+  --color-ink: #0d1117;
+  --color-paper: #f6f3ec;
+  --color-sand: #ece7da;
+  --color-accent: #ff4f1a;
+  --color-azure: #3b5bff;
+  --color-mute: #6b6a66;
+  --color-line: #ddd8ca;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html {
+  background: var(--color-paper);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Curseur du simulateur : piste remplie via la CSS var --p ---------- */
+.range {
+  --p: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.range:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--color-accent) var(--p), var(--color-line) var(--p));
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-line);
+}
+.range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -9px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-accent);
+  box-shadow: 0 4px 12px rgba(13, 17, 23, 0.2);
+}
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-accent);
+  box-shadow: 0 4px 12px rgba(13, 17, 23, 0.2);
+}
